@@ -19,3 +19,30 @@
 (comment) @comment.inner
 
 (comment)+ @comment.outer
+
+(if_statement
+  condition: (_) @conditional.inner)
+
+(if_statement
+  consequence: (_)? @conditional.inner
+  alternative: (_)? @conditional.inner
+  ) @conditional.outer
+
+(if_statement
+  condition: (_) @conditional.inner)
+
+; loops
+(for_statement
+  (_)? @loop.inner) @loop.outer
+(while_statement
+  (_)? @loop.inner) @loop.outer
+(do_statement
+  (_)? @loop.inner) @loop.outer
+
+; loops
+(for_statement
+  (_)? @loop.inner) @loop.outer
+(while_statement
+  (_)? @loop.inner) @loop.outer
+(do_statement
+  (_)? @loop.inner) @loop.outer

@@ -60,8 +60,7 @@
 
 (defun evil-textobj-tree-sitter--use-builtin-treesitter ()
   "Return non-nil if we should use builtin treesitter."
-  (and evil-textobj-tree-sitter--can-use-builtin-treesit
-       (string-suffix-p "-ts-mode" (symbol-name major-mode))))
+  (treesit-available-p))
 
 (defun evil-textobj-tree-sitter--get-queries-dir ()
   "Get the queries directory.
@@ -201,7 +200,7 @@ https://github.com/nvim-treesitter/nvim-treesitter/pull/564"
          (f-query (if (eq user-query nil)
                       (evil-textobj-tree-sitter--get-query lang-name t)
                     user-query))
-         (root-node (treesit-buffer-root-node))
+         (root-node (treesit-buffer-root-node (intern lang-name)))
          (captures (treesit-query-capture root-node f-query)))
     (seq-map (lambda (x)
                (list  (car x)
